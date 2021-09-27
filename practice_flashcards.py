@@ -41,11 +41,12 @@ while True:
             print(source)
             
         input_call = input('')
-    elif input_call == 'n':
+    elif input_call == 'notes':
         for path in paths_to_notes:
             
             img = cv2.imread(path)
 
+            # Rescale the image so it fits to the screen.
             screen_res = 1380, 920
             scale_width = screen_res[0] / img.shape[1]
             scale_height = screen_res[1] / img.shape[0]
