@@ -116,3 +116,5 @@ dmypy.json
 flashcards/
 *.pdf
 *.json
+.vs
+.qt_for_python

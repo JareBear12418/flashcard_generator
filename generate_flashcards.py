@@ -10,14 +10,19 @@ import calendar
 from natsort import natsort_keygen
 import json
 from PyDictionary import PyDictionary
-from googlesearch import search
-import numpy as np
 import time
-dictionary=PyDictionary()
+import argparse
+
 # pip install PyDictionary opencv-python pytesseract pdf2jpg natsort
+
+dictionary=PyDictionary()
+
+PATH_TO_THIS_FOLDER: str = 'C:/Users/jared/Documents/Code/flashcard_generator'
+
 NATSORT_KEY = natsort_keygen()
 
 clear = lambda: os.system('cls')
+
 # https://stackoverflow.com/questions/3173320/text-progress-bar-in-the-console
 def printProgressBar (iteration, total, prefix = '', suffix = '', decimals = 1, length = 100, fill = '█', printEnd = "\r"):
     # created function to clear terminal
@@ -60,34 +65,37 @@ def slugify(value, allow_unicode=False):
     value = re.sub(r'[^\w\s-]', '', value.lower())
     return re.sub(r'[-\s]+', '-', value).strip('-_')
 
-def generate_cards(location):
+def generate_cards(location, json_file):
     all_file_names = os.listdir(location)
-    
+
     printProgressBar(0, len(all_file_names), prefix = 'Generating flashcards', suffix = 'Complete', length = 50)
     all_file_names.sort(key=NATSORT_KEY)
     all_file_names_full_path = [location + name for name in all_file_names]
     number: int = 0
     KEYWORDS = calendar.month_name[1:]
     KEYWORDS += ['PM', 'AM', '2021', '2022', '2023', '2024', '2025', '2026']
-    KEYWORDS += [str(num) for num in range(0,32)]
-    
+    KEYWORDS += [str(num) for num in range(32)]
+
     data = {}
 
+    startRow = int(100) #x1
+    startCol = int(0) #y1
+    endRow = int(350) # we only go 350 pixels down, because the keywords never go furhter down than that.
     for i, file in enumerate(all_file_names_full_path):
         pytesseract.pytesseract.tesseract_cmd = "C:/Program Files (x86)/Tesseract-OCR/tesseract.exe"
         img = cv2.imread(file)
-        
+
         # we need to find the title/topic of the page, and the keywords (Month, date, time, year, etc.)
         # We first crop the image, this speeds up performance, and we are ONLY interested in
         # The first part of the page anyway, as this will always contain the title/topic, and keywords.
-        printProgressBar(0, 10, prefix = 'Processing image', suffix = 'Complete', length = 50)
         _, width = img.shape[0:2]
-        startRow = int(100)
-        startCol = int(0)
-        endRow = int(350) # we only go 350 pixels down, because the keywords never go furhter down than that.
+        # _, width = [e for e in img.tile if e[1][2] < 1200 and e[1][3] < 1200]
         endCol = int(width) # We go to the width of the document because titles could be long.
-        printProgressBar(1, 10, prefix = 'Cropping image', suffix = 'Complete', length = 50)
+        # print(f'{startRow}:{endRow}, {startCol}:{endCol}')
         croppedImage = img[startRow:endRow, startCol:endCol] # We crop the image accordingly to the values above.
+        #  x1, y1, x2, y2
+        # box = (startRow, startCol, endCol, endRow)
+        # croppedImage = img.crop(box)
         # The proceeding process is confusing, and wacky, so I'll do my best to explain everything here.
         '''
         From the cropped image, we blur the image to its MAX. this way we can thresh the image on a very
@@ -105,22 +113,16 @@ def generate_cards(location):
             We could downscale the image for faster processing of OCR, while this could speed it up
             a bit, i'll just leave it as is, as it seems to work fairly well.
         '''
-        printProgressBar(2, 10, prefix = 'Blurring image', suffix = 'Complete', length = 50)
         dst = cv2.GaussianBlur(croppedImage,(59,59),0) # We blur the image.
-        printProgressBar(3, 10, prefix = 'Threshing image', suffix = 'Complete', length = 50)
         gray = cv2.cvtColor(dst, cv2.COLOR_BGR2GRAY) # convert to grayscale
         # threshold to get just the signature (INVERTED)
         retval, thresh_gray = cv2.threshold(gray, thresh=254, maxval=255, \
                                         type=cv2.THRESH_BINARY_INV)
-        printProgressBar(4, 10, prefix = 'Re-bluring image', suffix = 'Complete', length = 50)
         dst1 = cv2.GaussianBlur(thresh_gray,(59,59),0)
-        printProgressBar(5, 10, prefix = 'Processing image', suffix = 'Complete', length = 50)
         invert = cv2.bitwise_not(dst1)
-        printProgressBar(6, 10, prefix = 'Re-Threshing image', suffix = 'Complete', length = 50)
         retval1, thresh_gray1 = cv2.threshold(invert, thresh=254, maxval=255, \
                                         type=cv2.THRESH_BINARY_INV)
 
-        printProgressBar(7, 10, prefix = 'Re-cropping image', suffix = 'Complete', length = 50)
         contours, hierarchy = cv2.findContours(thresh_gray1,cv2.RETR_LIST, \
                                         cv2.CHAIN_APPROX_SIMPLE)
 
@@ -138,11 +140,15 @@ def generate_cards(location):
         # Output to files
 
         roi=croppedImage[y:y+h,x:x+w] # final output, and this the input for pytesseract
-        printProgressBar(8, 10, prefix = 'Getting text from image', suffix = 'Complete', length = 50)
-        title = pytesseract.image_to_string(roi) # feed the final processed image to tesseract
-        printProgressBar(9, 10, prefix = 'Cleaning up text', suffix = 'Complete', length = 50)
+        try:
+            title = pytesseract.image_to_string(roi) # feed the final processed image to tesseract
+        except:
+            os.remove(file)
+            continue
         # Do some wored clean ups
-        title = title.replace('|', 'l')
+        title = title.replace('|', 'l').replace('l\/l', 'M').replace('Rehabﬂﬁy','Reliability').replace('Debﬂeﬁng', 'Debriefing').replace('In e rtla','Inertia').replace('Negaﬁvefeedback', 'Negative feedback').replace('Conﬁguhy', 'Contiguity')
+
+        
         key_words = title.split('\n')[1:]
         original_title = title.split('\n')[0]
         title = slugify(title.split('\n')[0]) # Make our title safe for file names.
@@ -155,44 +161,77 @@ def generate_cards(location):
         # Such as the month name, year, and time. if ANY of those match the set specs.
         # Then it passes.
         # This is how we determin if its a 'continuing' page or a 'new' page.
-        
-        printProgressBar(10, 10, prefix = 'Saving data', suffix = 'Complete', length = 50)
+
         if list(set(key_words).intersection(KEYWORDS)): # This copares both lists, and lets us know: True, there are matching items. Or False, there are no matching items.
-            os.rename(file, location + title + '.jpg')
             number = 0
+            os.rename(file, location + title + f'{number}.jpg')
             previous_title = title
             data[original_title][1]['paths'].append(location + title + f'{number}.jpg') # Save stuff.
             meaning = dictionary.meaning(original_title.split('/')[0])
             if (meaning):
-                data[original_title][0]['dictionary'].append(meaning['Noun'][0])
+                try:
+                    data[original_title][0]['dictionary'].append(meaning['Noun'][0])
+                except KeyError:
+                    pass
+                try:
+                    data[original_title][0]['dictionary'].append(meaning['Adjective'][0])
+                except KeyError:
+                    pass
             previous_title = title
             previous_original_title = original_title
         else:
             # This is a continuing page, so we give it the same title as the starting page, but with an
             # incremented number.
             number += 1
-            os.rename(file, location + previous_title + f'{number}.jpg')
-            data[previous_original_title][1]['paths'].append(location + previous_title + f'{str(number)}.jpg')
-        time.sleep(0.5)
+            try:
+                os.rename(file, location + previous_title + f'{number}.jpg')
+                data[previous_original_title][1]['paths'].append(
+                    location + previous_title + f'{number}.jpg'
+                )
+            except UnboundLocalError:
+                previous_title = title
+                previous_original_title = original_title
+                os.rename(file, location + previous_title + f'{number}.jpg')
+                data[previous_original_title][1]['paths'].append(
+                    location + previous_title + f'{number}.jpg'
+                )
+
         printProgressBar(i+1, len(all_file_names), prefix = 'Generating flashcards', suffix = 'Complete', length = 50)
     # Save our data so that it can be used by practice_flashcards.py for studying :P
-    with open('data.json', 'w', encoding='utf-8') as f:
+    with open(json_file, 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=True, indent=4)
     clear()
     print('Finished!')
 
-if __name__ == '__main__':
-    # In case the program fails, and the file exists with contents, we want to delete it,
-    # so that no further error occurs.
+def main(file_name):
+    pdf_path = os.getcwd() + '/' + file_name
     try:
-        shutil.rmtree(os.getcwd() + '/flashcards/')
+        shutil.rmtree(PATH_TO_THIS_FOLDER + '/flashcards/' + file_name.replace('.pdf', '.pdf_dir/'))
     except FileNotFoundError: 
         pass
-    file_name = 'test.pdf'
     printProgressBar(0, 1, prefix = 'Converting pdf to images.', suffix = 'Complete', length = 50)
-    convert_pdf_to_images(file_name, 'flashcards')
+
+    convert_pdf_to_images(pdf_path, PATH_TO_THIS_FOLDER + '/flashcards')
+    
+    json_folder = PATH_TO_THIS_FOLDER + '/flashcards/' + 'JSON_DATA/'
+    if not os.path.isdir(json_folder): 
+        os.mkdir(json_folder)
+        
     printProgressBar(1, 1, prefix = 'Converting pdf to images.', suffix = 'Complete', length = 50)
     time.sleep(0.5)
     printProgressBar(0, 1, prefix = 'Generating flashcards', suffix = 'Complete', length = 50)
-    generate_cards(os.getcwd() + '/flashcards/' + file_name.replace('.pdf', '.pdf_dir/'))
+    generate_cards(PATH_TO_THIS_FOLDER + '/flashcards/' + file_name.replace('.pdf', '.pdf_dir/'), json_folder + file_name.replace('.pdf', '.json'))
+    
+if __name__ == '__main__':
+    main('Geography.pdf')
+
+# CLI 
+# create a parser object
+parser = argparse.ArgumentParser(description = "Generate flashcards from PDF")
+parser.add_argument("-f", "--file", type=str, nargs=1, required=True, metavar=('pdf'), help = "pdf file name")
+# parse the arguments from standard input
+args = parser.parse_args()
+# calling functions depending on type of argument
+if args.file != None:
+    main(args.file[0])
     
