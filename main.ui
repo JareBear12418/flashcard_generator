@@ -45,7 +45,7 @@
            </widget>
           </item>
           <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_7" stretch="5,0,3">
+           <layout class="QHBoxLayout" name="horizontalLayout_7" stretch="6,0,3">
             <property name="sizeConstraint">
              <enum>QLayout::SetMaximumSize</enum>
             </property>
@@ -59,7 +59,7 @@
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>406</width>
+                 <width>433</width>
                  <height>386</height>
                 </rect>
                </property>
@@ -125,11 +125,23 @@
             <item>
              <layout class="QVBoxLayout" name="verticalLayout_4" stretch="0,0,0,0,0,0">
               <item>
-               <layout class="QGridLayout" name="selectionGridLayout">
-                <property name="spacing">
-                 <number>3</number>
+               <widget class="QGroupBox" name="groupBox">
+                <property name="title">
+                 <string>Multiple Choice Options</string>
                 </property>
-               </layout>
+                <property name="checkable">
+                 <bool>false</bool>
+                </property>
+                <layout class="QHBoxLayout" name="horizontalLayout_9">
+                 <item>
+                  <layout class="QGridLayout" name="selectionGridLayout">
+                   <property name="spacing">
+                    <number>3</number>
+                   </property>
+                  </layout>
+                 </item>
+                </layout>
+               </widget>
               </item>
               <item>
                <widget class="QListWidget" name="listOfTopics">
@@ -152,10 +164,10 @@
                  </size>
                 </property>
                 <property name="frameShape">
-                 <enum>QFrame::Panel</enum>
+                 <enum>QFrame::StyledPanel</enum>
                 </property>
                 <property name="frameShadow">
-                 <enum>QFrame::Plain</enum>
+                 <enum>QFrame::Sunken</enum>
                 </property>
                 <property name="lineWidth">
                  <number>1</number>
@@ -209,6 +221,13 @@
                  </widget>
                 </item>
                 <item>
+                 <widget class="QPushButton" name="btnHint">
+                  <property name="text">
+                   <string>Hint</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
                  <spacer name="horizontalSpacer_3">
                   <property name="orientation">
                    <enum>Qt::Horizontal</enum>
@@ -244,16 +263,6 @@
         </widget>
         <widget class="QWidget" name="page_2">
          <layout class="QVBoxLayout" name="verticalLayout_2">
-          <item>
-           <widget class="QLabel" name="label">
-            <property name="text">
-             <string>Select what to study:</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
           <item>
            <widget class="QLabel" name="label_2">
             <property name="text">
@@ -326,7 +335,7 @@
                  <x>0</x>
                  <y>0</y>
                  <width>327</width>
-                 <height>265</height>
+                 <height>285</height>
                 </rect>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_6">

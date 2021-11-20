@@ -12,6 +12,7 @@ import json
 from PyDictionary import PyDictionary
 import time
 import argparse
+import sys
 
 # pip install PyDictionary opencv-python pytesseract pdf2jpg natsort
 
@@ -23,29 +24,6 @@ NATSORT_KEY = natsort_keygen()
 
 clear = lambda: os.system('cls')
 
-# https://stackoverflow.com/questions/3173320/text-progress-bar-in-the-console
-def printProgressBar (iteration, total, prefix = '', suffix = '', decimals = 1, length = 100, fill = '█', printEnd = "\r"):
-    # created function to clear terminal
-    clear()
-    """
-    Call in a loop to create terminal progress bar
-    @params:
-        iteration   - Required  : current iteration (Int)
-        total       - Required  : total iterations (Int)
-        prefix      - Optional  : prefix string (Str)
-        suffix      - Optional  : suffix string (Str)
-        decimals    - Optional  : positive number of decimals in percent complete (Int)
-        length      - Optional  : character length of bar (Int)
-        fill        - Optional  : bar fill character (Str)
-        printEnd    - Optional  : end character (e.g. "\r", "\r\n") (Str)
-    """
-    percent = ("{0:." + str(decimals) + "f}").format(100 * (iteration / float(total)))
-    filledLength = int(length * iteration // total)
-    bar = fill * filledLength + '-' * (length - filledLength)
-    print(f'\r{prefix} |{bar}| {percent}% {suffix}', end = printEnd)
-    # Print New Line on Complete
-    if iteration == total: 
-        print()
 def convert_pdf_to_images(pdf_path: str, output_path: str):
     pdf2jpg.convert_pdf2jpg(pdf_path, output_path, pages="ALL")
 
@@ -68,7 +46,6 @@ def slugify(value, allow_unicode=False):
 def generate_cards(location, json_file):
     all_file_names = os.listdir(location)
 
-    printProgressBar(0, len(all_file_names), prefix = 'Generating flashcards', suffix = 'Complete', length = 50)
     all_file_names.sort(key=NATSORT_KEY)
     all_file_names_full_path = [location + name for name in all_file_names]
     number: int = 0
@@ -146,12 +123,15 @@ def generate_cards(location, json_file):
             os.remove(file)
             continue
         # Do some wored clean ups
-        title = title.replace('|', 'l').replace('l\/l', 'M').replace('Rehabﬂﬁy','Reliability').replace('Debﬂeﬁng', 'Debriefing').replace('In e rtla','Inertia').replace('Negaﬁvefeedback', 'Negative feedback').replace('Conﬁguhy', 'Contiguity')
+        title = title.replace('|', 'l').replace('l\/l', 'M').replace('Rehabﬂﬁy','Reliability').replace('Debﬂeﬁng', 'Debriefing').replace('In e rtla','Inertia').replace('Negaﬁvefeedback', 'Negative feedback').replace('Conﬁguhy', 'Contiguity').replace('Vv','W')
 
         
         key_words = title.split('\n')[1:]
         original_title = title.split('\n')[0]
+        # original_title += file.split('/')[-1].split('_')[0]
         title = slugify(title.split('\n')[0]) # Make our title safe for file names.
+        print(f'{i+1}/{len(all_file_names_full_path)} Generating flashcards: {original_title}')
+        # title += file.split('/')[-1].split('_')[0]
         data.update({original_title:[{'dictionary':[]},{'paths':[]}]}) # set up our dictionary for the orginizing stage.
         key_words = ' '.join(key_words)
         key_words = key_words.split(' ')
@@ -164,7 +144,11 @@ def generate_cards(location, json_file):
 
         if list(set(key_words).intersection(KEYWORDS)): # This copares both lists, and lets us know: True, there are matching items. Or False, there are no matching items.
             number = 0
-            os.rename(file, location + title + f'{number}.jpg')
+            try:
+                os.rename(file, location + title + f'{number}.jpg')
+            except FileExistsError:
+                print(f'Specific File: {file}\nTopic: {original_title}\nFile Name: {title}{number}.jpg\nAlready exists')
+                return
             previous_title = title
             data[original_title][1]['paths'].append(location + title + f'{number}.jpg') # Save stuff.
             meaning = dictionary.meaning(original_title.split('/')[0])
@@ -172,11 +156,10 @@ def generate_cards(location, json_file):
                 try:
                     data[original_title][0]['dictionary'].append(meaning['Noun'][0])
                 except KeyError:
-                    pass
-                try:
-                    data[original_title][0]['dictionary'].append(meaning['Adjective'][0])
-                except KeyError:
-                    pass
+                    try:
+                        data[original_title][0]['dictionary'].append(meaning['Adjective'][0])
+                    except KeyError:
+                        pass
             previous_title = title
             previous_original_title = original_title
         else:
@@ -196,12 +179,13 @@ def generate_cards(location, json_file):
                     location + previous_title + f'{number}.jpg'
                 )
 
-        printProgressBar(i+1, len(all_file_names), prefix = 'Generating flashcards', suffix = 'Complete', length = 50)
     # Save our data so that it can be used by practice_flashcards.py for studying :P
     with open(json_file, 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=True, indent=4)
-    clear()
+        
     print('Finished!')
+    time.sleep(3)
+    sys.exit()
 
 def main(file_name):
     pdf_path = os.getcwd() + '/' + file_name
@@ -209,7 +193,8 @@ def main(file_name):
         shutil.rmtree(PATH_TO_THIS_FOLDER + '/flashcards/' + file_name.replace('.pdf', '.pdf_dir/'))
     except FileNotFoundError: 
         pass
-    printProgressBar(0, 1, prefix = 'Converting pdf to images.', suffix = 'Complete', length = 50)
+    
+    print('Converting pdf to images.')
 
     convert_pdf_to_images(pdf_path, PATH_TO_THIS_FOLDER + '/flashcards')
     
@@ -217,21 +202,9 @@ def main(file_name):
     if not os.path.isdir(json_folder): 
         os.mkdir(json_folder)
         
-    printProgressBar(1, 1, prefix = 'Converting pdf to images.', suffix = 'Complete', length = 50)
-    time.sleep(0.5)
-    printProgressBar(0, 1, prefix = 'Generating flashcards', suffix = 'Complete', length = 50)
     generate_cards(PATH_TO_THIS_FOLDER + '/flashcards/' + file_name.replace('.pdf', '.pdf_dir/'), json_folder + file_name.replace('.pdf', '.json'))
-    
-if __name__ == '__main__':
-    main('Geography.pdf')
 
-# CLI 
-# create a parser object
-parser = argparse.ArgumentParser(description = "Generate flashcards from PDF")
-parser.add_argument("-f", "--file", type=str, nargs=1, required=True, metavar=('pdf'), help = "pdf file name")
-# parse the arguments from standard input
-args = parser.parse_args()
-# calling functions depending on type of argument
-if args.file != None:
-    main(args.file[0])
+
+file_name = sys.argv[-1].split('\\')[-1]
+main(file_name)
     

@@ -1184,7 +1184,8 @@ QDockWidget::close-button:pressed
 }
 
 QTreeView,
-QListView
+QListView,
+QListWidget
 {
     border: 0.1ex solid #76797c;
     background-color: #232629;

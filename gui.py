@@ -6,6 +6,7 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 import os
 import random
+from string import ascii_letters
 import json
 from functools import partial
 from PyQt5.QtGui import QImage, QPixmap
@@ -14,7 +15,8 @@ from datetime import datetime, timedelta
 from pathlib import Path
 import shutil
 import breeze_resources
-
+import pyperclip
+import qdarktheme # pip install pyqtdarktheme
 
 PATH_TO_THIS_FOLDER: str = 'C:/Users/jared/Documents/Code/flashcard_generator'
 UNCHANGED_STUDYING_TOPICS: list[str] = []
@@ -52,7 +54,10 @@ class Window(QMainWindow):
         uic.loadUi("main.ui", self)
         self.stackedWidget.setCurrentIndex(1)
         self.setWindowTitle('Flashcards')
-        self.setStyleSheet(open("style.qss", "r").read())
+        
+        # self.setStyleSheet(open("style.qss", "r").read())
+        self.setStyleSheet(qdarktheme.load_stylesheet())
+
         self.setWindowIcon(QIcon('icon.png'))
         
         # Studying variables
@@ -62,6 +67,8 @@ class Window(QMainWindow):
         self.selected_topic: str = ''
         self.wrong_guesses: list[str] = []
         self.slow_guesses: list[str] = []
+        self.used_up_hint: bool = False
+        
         self.NUMBER_OF_MULTIPLE_CHOICES: int = 5
         
         self.screen = app.primaryScreen()
@@ -78,6 +85,7 @@ class Window(QMainWindow):
         self.setMinimumSize(1400,1000)
 
         self.checkBoxMultipleChoice.clicked.connect(self.toggle_multiple_choice_clicked)
+        self.checkBoxShowListOfWords.clicked.connect(self.toggle_show_list_of_words_clicked)
         self.action_Quit.triggered.connect(self.close)
         self.actionRemove.triggered.connect(self.delete_flashcards)
         self.actionGenerate.triggered.connect(self.generate_flashcards)
@@ -93,6 +101,11 @@ class Window(QMainWindow):
         self.btnSubmit.clicked.connect(self.submit_button_clicked)
         self.btnSubmit.setFixedWidth(200)
         self.btnSubmit.setFixedHeight(80)
+        
+        self.btnHint.clicked.connect(self.show_hint)
+        self.btnHint.setFixedWidth(200)
+        self.btnHint.setFixedHeight(80)
+        
         
         self.showMaximized()
         self.show()
@@ -113,8 +126,6 @@ class Window(QMainWindow):
             self.btnStart.setEnabled(False)
             return
         
-        
-    
     def reset_game(self):
         self.current_index: int = 0
         self.completed_topics: int = 0
@@ -124,7 +135,7 @@ class Window(QMainWindow):
         self.slow_guesses.clear()
         self.stackedWidget.setCurrentIndex(1)
         self.refresh_topics_list()
-        self.btnStart.setEnabled(False)
+        self.btnStart.setEnabled(True)
     
     def generate_flashcards(self):
         home_dir = str(Path.home())
@@ -192,10 +203,10 @@ class Window(QMainWindow):
             self.update_modules_list(self.chapter_sorted_json)
             self.refresh_topics_list()
         except Exception as e: #No idea
-            error_dialog = QErrorMessage()
-            error_dialog.setWindowTitle('Error Message')
-            error_dialog.showMessage(e)
-            error_dialog.exec_()
+            # error_dialog = QErrorMessage()
+            # error_dialog.setWindowTitle('Error Message')
+            # error_dialog.showMessage(e)
+            # error_dialog.exec_()
             self.update_modules_list([])
             self.chapter_sorted_json = d
             self.refresh_topics_list()
@@ -274,7 +285,7 @@ class Window(QMainWindow):
                     except IndexError:
                         description = []
                     try:
-                        path = chapter_sorted_json[key][topic][1]['paths'][0]
+                        path = chapter_sorted_json[key][topic][1]['paths']
                     except IndexError:
                         path = []
                     final_compiled_json[topic][0]['dictionary'].append(description)
@@ -298,8 +309,12 @@ class Window(QMainWindow):
         self.refresh_topics_list()
     @pyqtSlot()
     def toggle_multiple_choice_clicked(self):
-        self.checkBoxShowListOfWords.setEnabled(not self.checkBoxMultipleChoice.isChecked())
-        self.checkBoxShowListOfWords.setChecked(False) 
+        if self.checkBoxMultipleChoice.isChecked():
+            self.checkBoxShowListOfWords.setChecked(not self.checkBoxMultipleChoice.isChecked()) 
+    @pyqtSlot()
+    def toggle_show_list_of_words_clicked(self):
+        if self.checkBoxShowListOfWords.isChecked():
+            self.checkBoxMultipleChoice.setChecked(not self.checkBoxShowListOfWords.isChecked()) 
     
     def start_timer(self):
         self.curr_time = QTime(00,00,00)
@@ -352,18 +367,43 @@ class Window(QMainWindow):
         self.stackedWidget.setCurrentIndex(0)
         self.TOTAL_NUMBER_OF_TOPICS: int = len(self.all_studying_topics)
         self.listOfTopics.clear()
-        self.listOfTopics.setVisible(self.checkBoxShowListOfWords.isChecked())
+        self.txtInput.setText('')
+        
+        if not self.checkBoxMultipleChoice.isChecked():
+            self.clearLayout(self.selectionGridLayout)
         if self.checkBoxShowListOfWords.isChecked():
             self.listOfTopics.addItems(self.all_studying_topics)
+
+        self.listOfTopics.setVisible(self.checkBoxShowListOfWords.isChecked())
+        self.btnSubmit.setVisible(not self.checkBoxMultipleChoice.isChecked())
+        self.txtInput.setReadOnly(self.checkBoxMultipleChoice.isChecked())
+        self.groupBox.setVisible(self.checkBoxMultipleChoice.isChecked())
+
         self.update_stats()
 
         self.start_timer()
         self.select_next_topic()
         self.number_of_topics: int = len(self.all_studying_topics)
     
+    def show_hint(self):
+        inds = [i for i,_ in enumerate(self.selected_topic) if not self.selected_topic.isspace()]
+
+        sam = random.sample(inds, int(len(self.selected_topic)/1.65))
+
+        letts =  iter(random.sample(ascii_letters, int(len(self.selected_topic)/1.65)))
+        print(letts)
+        lst = list(self.selected_topic)
+        for ind in sam:
+            lst[ind] = '_'
+        hint: str = ("".join(lst))
+        if not self.used_up_hint:
+            self.used_up_hint = not self.used_up_hint
+            self.txtInput.setText(hint)
+    
     def select_next_topic(self):
         self.START_TOPIC_TIME = datetime.now()
         self.update_stats()
+        self.used_up_hint = False
         
         topics_left = self.all_studying_topics
         random.shuffle(topics_left)
@@ -372,22 +412,30 @@ class Window(QMainWindow):
         except IndexError:
             self.show_results()
             return
+        
+        if self.is_number(self.selected_topic):
+            self.check_answer(topic=self.selected_topic, skip_dialog=True, ignore_score=True)
+            return
+        
         self.show_images(self.selected_topic)
         if self.checkBoxMultipleChoice.isChecked():
             self.answer_and_possible_answers = self.find_similar_topics(topic=self.selected_topic)
             self.add_buttons_to_grid(self.answer_and_possible_answers)
     
     def show_images(self, topic: str):
-        path_to_notes = self.final_compiled_json[topic][1]['paths']
+        path_to_notes = self.final_compiled_json[topic][1]['paths'][0]
         startCol = int(0) # Deal with it!
+        self.clearLayout(self.verticalLayout_5)
         
+        if len(path_to_notes) == 0: 
+            self.check_answer(self.selected_topic, True)
+            return
         for index, path in enumerate(path_to_notes):
             try:
                 img = cv2.imread(path)
             except TypeError:
                 self.check_answer(self.selected_topic, True)
                 break
-            
             height, width = img.shape[0:2]
             startRow = int(350 if index == 0 else 0)
             endRow = int(height)
@@ -399,18 +447,10 @@ class Window(QMainWindow):
             bytesPerLine = ch * w
             convertToQtFormat = QImage(rgbImage.data, w, h, bytesPerLine, QImage.Format_RGB888)
             p = convertToQtFormat.scaled(int(self.scrollArea.width()), int(self.scrollArea.height()), Qt.KeepAspectRatio)
-            self.lblNotes1.clear()
-            self.lblNotes2.clear()
-            self.lblNotes3.clear()
-            self.lblNotes4.clear()
-            if index == 0:
-                self.lblNotes1.setPixmap(QPixmap.fromImage(p))
-            elif index == 1:
-                self.lblNotes2.setPixmap(QPixmap.fromImage(p))
-            elif index == 2:
-                self.lblNotes3.setPixmap(QPixmap.fromImage(p))
-            else:
-                self.lblNotes4.setPixmap(QPixmap.fromImage(p))
+            label = QLabel(self)
+            label.setAlignment(Qt.AlignHCenter | Qt.AlignVCenter)
+            label.setPixmap(QPixmap.fromImage(p))
+            self.verticalLayout_5.addWidget(label)
     
     def feedback_message(self, message: str, color: str):
         messagebox = TimerMessageBox(message=message, color=color, timeout=3, parent=self)
@@ -434,37 +474,43 @@ class Window(QMainWindow):
             for i, guesses in enumerate(self.wrong_guesses, start=1):
                 temp_text += f'\n{i}. {guesses},'
             wrong_guesses_text = f'Topics that were guessed incorrectly: {temp_text}\n'
-        text = f"""Studied: {self.subjects.currentText()}
+        informative_text = f"""Studied: {self.subjects.currentText()}
 Modules: {modules}
 Topics: {self.TOTAL_NUMBER_OF_TOPICS}
 Time: {self.formatted_time}
 Score: {(self.correct_topics)}/{(self.completed_topics)} - {round(((self.correct_topics+1)/(self.completed_topics+1)*100),2)}%
 
-{slow_guesses_text}{wrong_guesses_text}
 """
+        detailed_text = f'{slow_guesses_text}{wrong_guesses_text}'
 
         messageBox = QMessageBox(self)
+        # messageBox.setStyleSheet("QLabel{min-width: 200px; text-align: left;} QPushButton{ width:100px; height:80px; font-size: 18px; }");
         # messageBox.setWindowIcon(QIcon("Ok.png"))
         messageBox.setIcon(QMessageBox.Information)
         messageBox.setWindowTitle(f"Studied: {self.subjects.currentText()}")
-        messageBox.setInformativeText(text)
-
+        messageBox.setTextInteractionFlags(Qt.TextSelectableByMouse) # (QtCore.Qt.NoTextInteraction)
+        messageBox.setDetailedText(detailed_text)
+        messageBox.setInformativeText(informative_text)
         btnOk = messageBox.addButton("Ok", QMessageBox.YesRole)
+        btnCopy = messageBox.addButton("Copy", QMessageBox.AcceptRole)
         messageBox.setDefaultButton(btnOk)
-
         messageBox.exec_()
         
+        if messageBox.clickedButton() == btnCopy:
+            pyperclip.copy(detailed_text)
+            
         self.reset_game()
         
     
     def add_buttons_to_grid(self, topics: list[str]):
         self.clearLayout(self.selectionGridLayout)
-        cols: int = 2
-        rows: int = 1
+        cols: int = 2 # 3
+        rows: int = 1 # 2
         number_of_items: int = 0
         for index, topic in enumerate(topics, start=1):
             row = int(number_of_items / cols)
             col = number_of_items & rows
+            topic = ''.join([i for i in topic if not i.isdigit()])
             button = QPushButton(f'{index}. {topic}')
             button.clicked.connect(partial(self.check_answer, topic))
             # button.btnSubmit.setFixedWidth(200)
@@ -475,11 +521,17 @@ Score: {(self.correct_topics)}/{(self.completed_topics)} - {round(((self.correct
     def submit_button_clicked(self):
         self.check_answer(topic=self.txtInput.text())
          
-    def check_answer(self, topic: str, skip_dialog: bool = False):
+    def check_answer(self, topic: str, skip_dialog: bool = False, ignore_score: bool = False):
         topic = topic.replace(' ', '')
         selected_topic = self.selected_topic.replace(' ', '')
+        
+        topic = ''.join([i for i in topic if not i.isdigit()])
+        selected_topic = ''.join([i for i in selected_topic if not i.isdigit()])
+
         elapsed = datetime.now() - self.START_TOPIC_TIME
-        self.completed_topics += 1
+        
+        if not ignore_score:
+            self.completed_topics += 1
         if self.compare_words(topic.lower(), selected_topic.lower()) <= (len(selected_topic)/4):
             if self.checkBoxTimed.isChecked() and elapsed > timedelta(seconds=30):
                 self.all_studying_topics.pop(0)
@@ -487,7 +539,8 @@ Score: {(self.correct_topics)}/{(self.completed_topics)} - {round(((self.correct
                 self.feedback_message(message="That is correct, but not completed within 30 seconds!", color='blue')
             else:
                 self.all_studying_topics.pop(0)
-                self.correct_topics += 1
+                if not ignore_score:
+                    self.correct_topics += 1
                 if not skip_dialog:
                     self.feedback_message(message="That is correct!", color='green')
         else:
@@ -561,6 +614,16 @@ Score: {(self.correct_topics)}/{(self.completed_topics)} - {round(((self.correct
             previous_row = current_row
 
         return previous_row[-1]
+    
+    def is_number(self, n):
+        try:
+            float(n)   # Type-casting the string to `float`.
+                    # If string is not a valid `float`, 
+                    # it'll raise `ValueError` exception
+        except ValueError:
+            return False
+        return True
+    
     def keyPressEvent(self, event):
         if self.stackedWidget.currentIndex() == 0: # If we have actually started studying
             if self.checkBoxMultipleChoice.isChecked():
