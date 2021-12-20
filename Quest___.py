@@ -11,13 +11,14 @@ import string
 import qdarktheme # pip install pyqtdarktheme
 import zipfile
 import time
+import subprocess
+import platform
 
 class TimerMessageBox(QMessageBox):
     def __init__(self, message: str, color:str, timeout: int = 15, parent=None):
         super(TimerMessageBox, self).__init__(parent)
         self.setWindowIcon(QIcon('icon1.png'))
         self.setWindowTitle("Feedback message")
-        self.setWindowIcon(QIcon('icon.png'))
         self.time_to_wait = timeout
         self.message = message
         self.color = color
@@ -130,7 +131,7 @@ class App(QMainWindow):
         self.feedback_message(message='Finished!', color='green')
     
     def export_files(self):
-        path = ' questions/'
+        path = 'questions/'
         timestr = time.strftime("%Y%m%d-%H%M%S")
         zipf = zipfile.ZipFile(f'Questions_{timestr}.zip', 'w', zipfile.ZIP_DEFLATED)
         # ziph is zipfile handle
@@ -140,7 +141,18 @@ class App(QMainWindow):
                         os.path.relpath(os.path.join(root, file), 
                                         os.path.join(path, '..')))
         zipf.close()
-        self.feedback_message(message='Finished!', color='green')
+        self.explore(os.getcwd() + f'/Questions_{timestr}.zip')
+    
+    def explore(self, path):
+        FILEBROWSER_PATH = os.path.join(os.getenv('WINDIR'), 'explorer.exe')
+        # explorer would choke on forward slashes
+        path = os.path.normpath(path)
+
+        if os.path.isdir(path):
+            subprocess.run([FILEBROWSER_PATH, path])
+        elif os.path.isfile(path):
+            subprocess.run([FILEBROWSER_PATH, '/select,', path])
+            
     def studying_menu(self, enable: bool):
         self.lblQuestion.setText("")
         self.txtInput.setVisible(enable)
