@@ -1,0 +1,635 @@
+1. -- % of world's population uses --% of world's resources.
+12, 60
+2. the relationship between environmental degradation and economic growth is called a -- curve.
+Kuznet 
+3. Control and ownership of Crown Lands and natural resources in the southern part of Canada is.
+Provincial
+4. What percentage of Aichi Biodiversity targets were reached between 2011 and 2020.
+0%
+5. Wind is an example of perpetual resource.
+True
+6. The Anthropocene reflects the dominant influence of humans on planetary processes.
+True
+7. The marine living planet index has declined more than any other realm since 1970.
+False
+8. Which is the greatest contribution to our human ecological footprint.
+Carbon.
+10. where is the greatest primary productivity, least productivity in water, and why?
+Near the coast (shallow, warm full of nutrients) . deep ocean (least), low nutrients because they sink down.
+11. Where is the greatest primary on land?
+(near equator) tropical rainforest.
+12. Define specialist and generalist species. Example of each.
+Generalist species, broad niches and can adapt more readily to environmental change example cayotes. Specialist species, narrow niches and are more SUSceptible to environmental changexample pandas. 
+13. Canada's only endangered species?
+Vancouver Island Marmot
+14. Why are tropical rainforests so diverse?
+High moisture, High solar energy, high moisture, positive feedback loop, and co-evolution and mutualism.
+15. Where is the greatest Spatial disparity in oceans?
+Along the coasts where rivers and estuaries connect to the ocean.
+16. What are autotrophs?
+Organisms that can capture energy and generate matter.
+17. When was the biggest drop in Capelin population?
+1995 
+18. Most biodiverse area in Canada?
+Montane Cordillera 
+20. The law of Entropy is that energy can neither be created nor destroyeTrue or False.
+False
+21. What do you call easy to harness energy?
+High quality energy
+22. How do we measure the rate of productivity?
+Kilocalories/meters squared/year
+23. Humans take 40% of NPP (net primary productivity)/Year.
+24. What are Niche's made up of?
+Physical, Chemical and Biological Characteristics
+25. Realized Niche is the Actual range a species occupy.
+True
+26. Optimal Foraging Theory is when a predator goes and hunts for prey. True or False.
+False
+27. An example of Canada's keystone species.
+Beaver
+29. Endemic species are found in only one areTrue or False.
+True
+30. Organisms that can capture energy from the sun and manufacture matter are called?
+Autotrophs
+31. Two species using the same resources ad different spatial and/or temporals scales is called?
+Resource partitioning
+32. Which ecosystem has the highest net primary productivity?
+Swamps and marshes.
+33. What is the percentage of energy assimilated from one trophic level to the next?
+10%
+34. What is the percentage of energy assimilated from one trophic level to the next is lost?
+90% 
+35. The clown fish is an example of a species that lives in a mutualistic relationship with sea anemones? True or False.
+True
+36. Beavers are an example of Canadians keystone species? True or False.
+True
+37. Tropical rain forests are incredibly resilient because of their soils are rich in nutrients? True or False.
+False
+38. Atrophic cascade is the pressure put on to lower predators by apex predators.
+True
+39. Heat and energy are Limiting factors? True or False
+False
+40. State three reasons why only 10% of available energy is assimilated at each tropic level.
+Not all that is consumed is digestedictsort
+Not all that is ingested is digested
+Not all biomass is converted for the next level. 
+Through cellular respiration energy is lost as heat.
+41. List three scales which we can measure biodiversity?
+Genetic Diversity,
+Species Diversity, 
+Ecosystem Diversity
+42. List three reasons why tropical rainforests are so diverse?
+Been around for a long time
+High input from sun and moisture
+Coevolution and Mutualism.
+Positive feedback loop
+1. Lichens are an example of a(n)
+Primary Colonizer
+Secondary Colonizer
+Alien invasive species.
+Parasitic Species.
+2. Each stage in ecological succession is called a(n) stage
+Biotic
+Ecotone
+Endemic
+Seral
+3. An edaphic climax community is primarily determined by:
+Soil geology
+Moisture
+Insolation
+Temperature
+4. A k-selected species is characterized by producing lots of young that have no parental care.
+False
+5. An ecotone often has Higher biodiversity than the comminutes on either side
+True
+6. The intermediate disturbance hypothesis states that ecosystems subject to moderate disturbance generally maintain high levels of biodiversity.
+True
+7. (3 mark) Explain the difference between positive and negative feedback and give an example of each.
+Answer: Positive feedback enhances change or exacerbates the problem. Negative feedback works to suppress or moderate the changRemoving a Otter from an environment, or Beavers. Changes away from its original community structurNegative feedback therefore works to maintain ecosystem stability by contracting positive feedback loops. Not about good, but a positive amount of differenc
+8. (3 mark) Define ecological succession and explain the main difference between primary and secondary succession.
+Answer: Primary succession: colonization and occupation of a previously unvegetated surfacSecondary succession: same processes but starts on surfaces that have already been vegetatePrimarry succession is a lot longer.
+9. (3 marks) List three implications of maintaining an early succession ecosystem.
+Agriculture.
+Productivity is often higher
+Nutrient cycling is more rapid
+Biodiversity reduced
+Affects specialized species at high trophic levels
+Usually benefits pioneer species. 
+10. The main storage reservoir for nitrogen is the?
+Atmosphere
+11. Most of the water in Canada flows?
+North
+12. Which organisms are most sensitive to a lowering freshwater pH due to acid precipitation?
+Crustaceans.
+13. The process during which decomposing biomass is converted back into simple nitrogen compounds such as ammonia is called nitrogen fixation
+False
+14. Carbon dioxide gas constitutes only 0.03% of the atmosphere but it's the main reservoir for the carbon that is the building block for life.
+True
+15. Manitoba produces the most Sulphur oxide emissions in Canada?
+True
+16. List three human impacts on the phosphors cycles.
+Removing the P from the oceans.
+Minding for fertilizer and detergent.
+Concentrating numbers of domestic organisms
+removing biomass.
+17. Explain the process of eutrophication 
+Excessive phosphorus and nitrogen in aquatic systems -> explosive plant growth -> plants die and are decomposed by bacteria -> depletes oxygen-> Eutrophication
+18. Explain the process that leads to the oxygen sag curve in a freshwater river.
+fig 5.14 'Active decomposition' is the "sag" curve
+ELI5: Plants that are growing from wastes, the bacteria grows in population and uses oxygen, and oxygen depletes, species like fish need that oxygen.
+19. The specific characteristics of time and place need to be considered in natural resource management decision-making requires?
+custom-designed solutions (biophysical, economic, social, legal, and political, are the specific characteristics)
+20. Due to preoccupation with debt reduction, governments have been?
+1. Downloading environmental responsibilities to lower levels of government. 2. Commercializing environmental services. 3. Privatizing environmental services.
+21. The more anthropocentric nature of the ecosystem approach challenges the typical biocentric approach of traditional resource management? (True/False)
+FalsCorrection: A more biocentric approach challenges typical anthropocentric approach
+22. Many of our environmental problems have emerged after many decades, or even centuries. It is unrealistic to assume they can be reversed or "fixed" in a few years. (True/False)
+True
+23. List 3 characteristics of an ecosystem approach (Most important part of this chapter) (KNOW ALL OF THEM)
+Includes whole systems, not just parts of it
+Focusses on the interrelationships amount the elements
+Recognizes the dynamic nature of the ecosystem
+Incorporates concepts of carrying capacity, resilience and sustainability. (There are limits to human activity)
+Uses broad definition of environments
+Encompasses both urban and rural activities
+Is based on natural geographic units rather than on political boundaries.
+Embraces all levels of activity: local, regional, national and international.
+24. Name and define three types of vision. (KNOW ALL OF THEM)
+Catalytic Serves as a prompt or stimulus to create vision.
+Legitimized Created through political processes involving key resources and negotiating sought image.
+Articulated Very general vision statement to be understood.
+25. Define and give an example of Environmental Justice.
+"The fair treatment and meaningful involvement of all people regardless of race, color, national origin, implementation and enforcement of environmental laws, regulations and policies" (US Environmental Protection Agency, 1997)
+26. Times of challenge in making choices about resource management developments are called?
+Turbulent conditions.
+27. Determining the probability of an environmentally or socially negative event of some specific magnitude is called?
+Risk assessment
+28. More than 50% of the Canada-United states border passes through shared water bodies, such as rivers and lakes? (True/False)
+True
+29. The decision to establish the Maple Leave processing plant in Brandon was made following multiple holder meetings in a collaborative fashion?
+False
+30. List three characteristics that define Stakeholders: (3 mark)
+Any public agency with management responsibility
+All those who significantly affected by a potential decision
+All those who might participate to facilitate, block, or delay management decisions.
+31. List three considerations in preparing scientific messages for the public: (3 mark)
+What do we know, with what accuracy, and how confident are we about our data?
+What don't we know, and why are we uncertain?
+What could we know, with more time, money and talent?
+What should we know in order to act in the face of uncertainty?
+32. Define co-management in natural resource management and give an example where co-management has been used or is needed? (3 mark)
+Primarily concerned with user-participation in decision-making and with linking communities and government managers
+More lobster plan blockades planned by N.fishermen
+Fairy creek, ecomanagement is needed
+33. Give 3 examples of collaboration:
+Sharing resources
+Power sharing
+Exchanging information
+34. List 3 things about co-ordination:
+Working together
+Inter-departmental committees or task forces
+transdisciplinary approaches needed 
+35. List 3 things defining Stakeholders:
+anyone who might participate to delay management decisions
+Any public agency with management responsibility
+All those are are affected by the decision 
+36. Degrees of tokenism includes partnership? (True/False)
+False
+37. List all three degrees of tokenism:
+Placation
+Consultation
+Information
+38. What's an example of Participatory approaches?
+Maple Leaf Plant Brandon, MB
+39. Co-management is primarily concerned with governments making decisions however they want to? (True/Fales)
+False
+40. Communication is only effective when new understanding results in attitude and/or policy adjustments? (True/False)
+True
+41. One aspect about communication to consider is much of the public understands nature and how scientific research is conducted? (True/False)
+False
+42. List all considerations in preparing scientific messages:
+What do we know, with what accuracy, and how confident are we about our data?
+What should we know in order to act in the face of uncertainty?
+What could we know with more time, money, talent, and more people?
+What don't we know and why are we uncertain?
+43. The Main objective in Adaptive Environmental Management is to?
+Cope with the uncertain
+Cope with the unexpected
+Cope with the unknown
+44. Adaptive management is primarily concerned with learning-by-doing in a trial-and-error fashion? (True/False)
+False
+45. List 3 characteristics of adaptive co-management:
+Learning-by-doing
+Integration of different knowledge systems.
+Collaboration
+Power sharing among community, regional, and national levels.
+Management flexibility
+46. The impact is the difference between what?
+What would happen with the action and what would happen without the action.
+47. Risk assessment is determining the probability of an environmentally or socially positive event of some specific magnitude? (True/False)
+False
+48. List 3 challenges in impact assessment:
+Types of initiatives to be assessed.
+When Impact assessments should be done.
+Determining the significance of impacts
+Inadequate understanding of ecosystems
+The nature of public involvement
+The development of monitoring
+Sustainability assessment
+49. Conflicts are desirable? (True/False)
+True
+50. List 3 attributes of ADR:
+Emphasis on the issues and interests rather on the procedures
+An outcome normally resulting in a greater commitment to the agreement
+Attainment of a long-lasting settlement
+Constructive communication and improved understanding
+Effective use of information and experts
+Increased flexibility
+51. List all the specific characters of time and place that need to be considered in a custom-designed solution:
+Biophysical
+Economic
+Social
+Legal
+Political
+52. Visions can be developed in 3 ways by asking what 3 questions?
+All of the above
+What is likely to happen?
+What ought to happen?
+What can happen?
+53. The most important question to ask from the above question is: "What ought to happen?"? (True/False)
+False
+54. Name 3 types of visions: (Know all of them and their meaning)
+Catalytic
+Legitimized
+Articulated
+Enacted
+Routinized
+Embedded
+55. Articulated is a very general vision statement to be understood? (True/False)
+True
+56. Ecosystem approach includes only parts of the system? (True/False)
+False
+57. Long term view is more than 15 years?
+True
+58. List 5 of the major macronutrients:
+Carbon
+Hydrogen
+Nitrogen
+Oxygen
+Phosphorus
+59. 97% of all organic mass is made of 5 nutrients? (True/False)
+True
+60. Gaseous cycles are _ and sedimentary cycles are__.
+Fast, slow.
+Slow, fast.
+Slow, slow.
+Fast, fast.
+61. What are 3 of the impacts humans have on the phosphorus cycle?
+Mining for fertilizer leads to excessive run-off.
+Removing biomass accelerates erosion
+Removing Phosphorus from the oceans returns as waste
+62. Is the Sulphur cycle sedimentary? (True/False)
+True
+63. How do humans cause eutrophication if they do in the first place?
+Removal of nitrogen-rich crops leads to soil nitrogen depleted.
+Nitric acid formation leads to acid rain, such like car engine emissions
+64. 5% of water is left for humans to use? (True/False) 
+False
+65. Most of the water in Canada flows north? (True/False)
+True
+66. Oligotrophic (low level) has a very high species diversity? (True/False)
+True
+67. Which species is most sensitive to acidifying water?
+Crustaceans 
+68. Which of the following have the highest Sulphur oxide emissions?
+Saskatchewan
+Ontario
+Alberta
+British Columbia
+69. What is the greatest contribution to nitrogen oxide?
+Transportation
+70. Which of the following have the highest nitrogen oxide emissions?
+British Columbia
+Manitoba
+Ontario
+Quebec
+71. Primary succession happens more than once? (True/False)
+False
+72. The final stage for an ecosystem is:
+Ecological succession
+Climax community
+Secondary succession
+Third succession
+73. Lichen is a type of secondary colonizer? (True/False)
+False
+74. Another word for transitions in an ecosystem is?
+Ecotones
+75. Disturbances are good for the environment? (True/False)
+True
+76. What is the primary way invasive species travel?
+Ballast dumping fig 4.5
+77. Positive feedback enhances or exacerbates the problem, while negative feedback works to suppress or moderate the change? (True/False)
+True
+78. List three examples of biotic reduction factors?
+Diseases
+Parasites
+Predators
+79. K-strategists have a very early reproductive age?
+False
+1. Which source contributes the greatest amount of greenhouse gasses to the atmosphere?
+Electricity and heat production
+2. Annual average temperatures in Canada have warmed at __ the global average
+Double
+3. Which of the following provinces has the greatest per capita emissions of carbon dioxide.
+Saskatchewan
+4. The temperature balance of the Earth is maintained through re-radiation of long wave radiation? (True/False)
+True
+5. Warming ocean temperatures will result in decreasing the acidity of water? (True/False)
+False
+6. Institutional adaptation to climate change includes economics, laws, and policies.
+True
+7. List three implications of climate change on human health and infectious diseases (3 mark)
+Higher incidences of water-borne diseases
+Decreased food security and increased malnutrition
+Increased heat related mortality
+Increased health-related issues due to poor air quality
+Increased emergence of infectious diseases. 
+Increased natural disasters
+Greater impacts on northern Canadians
+Increased impact on health care systems
+8. How will climate change will affect fis(3 mark)
+Fish are vulnerable to changes in temperature, precipitation, wind patterns and chemicals conditions
+Warmer water in fresh water systems would enhance conditions for warm-water fish but create additional stress for cold water fish.
+9. List three examples of mitigation to reduces the sources or enhance the sinks of greenhouse gases (3 mark)
+Carbon taxes
+Cap-and-Trade systems
+Carbon Sequestration
+Geo-engineering
+New technologies 
+10. The dominant limiting factor for primary production in the ocean is?
+Nutrients
+11. What percentage of ocean pollution originates on land?
+80%
+12. The majority of life in the ocean exists in the __ zone where there is sufficient light for photosynthesis.
+Euphotic Zone
+13. As the carbon increases, acidity declines? (True/False)
+False
+14. Escaped Atlantic salmon from salmon farms in the Pacific ocean are now spawning British Columbia rivers? (True/False)
+True
+15. Climate change could result in a slowdown of thermohaline circulation?
+True
+16. List three purposes of marine protected areas?
+Protect endemic species
+Conserve marine biodiversity and fisheries
+Provide nodes of scientific research for management.
+17. List three principles of Canadas ocean strategy?
+Integrated management
+Sustainable development
+Precautionary approach
+18. Define serial depletion as it applies to fishers and explain its ecological consequences?
+Fish down one species, and move on to the next and so one, such as Whales 
+19. The origins of agriculture date back 9000-11000 years to the _ Revolution?
+Neolithic
+20. Which area of the world has seen the greatest increase in demand for meat since 1960s?
+Asia/China
+21. The metabolic process during which cattle and bison produce methane is called?
+Enteric fermentation
+22. Since 1960, increased agricultural production has come primarily from increasing the amount of arable land available? (True/False)
+False
+23. The second law of thermodynamics is important to agricultural food changes, the longer the food chain, the greater the energy loss? (True/False)
+True
+24. Bioaccumulation is increase in concentrations of toxins in organisms as the pass up the food chain?
+False
+25. Name and define three kinds of agricultural land
+Arable Land, replanting annually (5 periods)
+Permanent pasture, grazing livestock. Greatest amount.
+Permanent crop land, no annual replanting like coffee, tea, fruit. Least amount
+26. List three of agricultural impact on global landscapes.
+Interruption of biogeochemical cycles
+Auxiliary energy flows
+Disturbances of soil
+27. List three of targets for which Brandon implements an integrated pest management plan
+Mosquito control
+Forestry
+Landscape display
+Monitoring, thresholds, treatment and evaluation requirements for each program.
+28. Saskatchewan is the only province in Canada where _ is mined.
+uranium
+29. The largest source of electric generation in Canada is?
+Hydroelectric
+30. The greatest amount of coal for energy production is produced in?
+Asia Pacific
+31. The majority of Canada's petroleum is extracted from oil rigs offshore in the Atlantic ocean? (True/False)
+False 
+32. Critical zone flow resources become stock resource once regenerative capacity is exceeded? (True/False)
+True
+33. Although Germany produces far more solar power than Canada, Canada has far more potential to produce solar power.
+True
+34. List three considerations when choosing among energy sources 
+Transportation
+Price
+Storability 
+Occurrence
+Energy content
+Flexibility
+Safety and Impact
+Cleanliness and convenience
+35. List three environmental issues of producing energy
+Disruption of remote ecosystems
+Waste heat in aquatic ecosystems from nuclear energy production
+Thread to ecological and human health
+Alteration of ecosystems from building hydroelectric dams
+36. List three environmental concerns of fracking for natural gas
+Earthquakes
+Toxicity 
+Groundwater contamination
+Noise pollution
+Large volumes of groundwater contamination
+Surface pollution
+37. Species become _ when they are eliminated from one part of their range.
+Extirpated
+38. The body responsible for assessing and recommending levels of endangerment of Canadian species is:
+COSEWIC
+39. 50% of endangered birds and mammals in Canada live in the?
+Prairies 
+40. Habitat loss is the greatest factor contributing to species-at-risk in Canad(True/False)
+a.True
+41. The species-at-risk act in Canada uses an adaptive management process to protect species?
+a.True
+42. Overharvest is one of the main drivers in the extinction vortex?
+True
+43. Explain the difference between consumptive and nun-consumptive use of wildlifAre these extrinsic or intrinsic values? (3 marks)
+Extrinsic
+Consumptive
+i. Hunting
+ii. Fishing
+iii. Organism is harvested
+Non-consumptive
+i. Photography
+ii. Wildlife Watching
+iii. Not harvested
+44. List three characteristics that make species vulnerable to extinction. (3 marks)
+Endemic species
+K-strategists
+Migratory species
+Valuable species
+Species at high trophic levels
+Species that clash with human activities
+45. List three purposes of SARA
+Create prohibitions to protect endangered species and their habitat.
+Create public registry to make documents accessible to the public.
+Consistent with aboriginal and treaty rights.
+46. List 3 types of perpetual natural resources.
+Solar
+Wind
+Tides
+47. Sulphur dioxide emissions are a mining environmental issue? (True/False)
+True
+48. What year was Asbestos mining stopped in Canada?
+2011
+2010
+2021
+2008
+2009
+1960
+49. Threats to ecological and human health are a energy environmental issue? (True/False)
+True
+50. Canada is the _ largest producer of gold/
+5th
+1st
+2nd
+3rd
+4th
+51. State 3 considerations of choosing energy sources, and give definitions.
+Storability, a source that can be stored has an advantage over one that cannot.
+Energy Content, the amount of usable energy by weight or volume of a given source
+Price, the less expensive source or form will be preferred.
+52. What is the largest 'green' power in Canada?
+Hydro
+53. United states has the biggest percentageof national total wind power production? (True/False)
+False
+54. Canada has seen as steady increase of cumulative wind power? (True/False)
+True
+55. List 3 disadvantages of wind power.
+Wind isn't constant
+Can be noisy
+Habitat loss and change
+56. What country has the highest solar power generation?
+Germany
+China
+Japan
+United States
+EU
+Canada
+57. Canada has more solar power potential then the Germany? (True/False)
+True
+58. What is the top global oil reserves in the world?
+Venezuela 
+Canada
+Iran
+Kazakhstan
+Saudi Arabia
+59. Gulf of Mexico has the highest offshore petroleum? (True/False)
+False
+60. What percentage of oil is extracted in Canada Alberta?
+84%
+81%
+82%
+83%
+85%
+78%
+61. Where is the most coal produced?
+Asia Pacific
+North America
+Canada
+Europe
+Venezuela
+62. Canada is the __ largest exporter of coal?
+3rd
+1st
+2nd
+4th
+5th
+63. Where in Canada is the biggest coal production?
+Alberta
+Saskatchewan
+Nova Scotia
+New Brunswick
+Ontario
+64. Sulphur dioxide emissions is the highest in ?
+Saskatchewan
+British Columbia
+Alberta
+Nova Scotia
+Ontario
+65. Nitrogen Oxide emissions is the highest in ?
+Nova Scotia
+British Columbia
+Alberta
+Saskatchewan
+Ontario
+66. Canada produces __ of its electricity from nuclear power, ranking Canada _ in the world.
+15%, sixth
+13%, fourth
+15%, fifth
+13%, sixth 
+67. Define Ecologically extinct.
+When a species exist in such low numbers, they cannot fulfill their ecological role
+68. Increasing biodiversity lowers ecosystem ability to adapt. (True/False)
+False
+69. Bioprospecting in tropical rain forests is an economic value? (true/False)
+True
+70. Humans have increased the extinction rate by -- times?
+1000
+10
+100
+1100
+71. List 3 main pressures causing extinction.
+Habitat loss
+Over harvest
+pollution
+72. Where has most attention been regarding extinction?
+Tropical Countries
+Prairies
+Oceans
+Swamps
+73. -- accounts for -- of all species at risk in Canada
+Habitat loss, 84%
+Overharvest, 85%
+Pollution, 84%
+Overharvest, 84%
+74. -- is the most important factor in causing freshwater species to be endangered.
+Pollution
+Overharvest
+Habitat loss
+Fishing
+75. CITES Appendix II includes not necessarily species threatened with extinction? (True/False)
+ True
+76. Canada has been part of CITES since
+1975
+1980
+1989
+1970
+1960
+1974
+77. What are 3 purposes of the SARA process
+Be consistent with aboriginal and treaty rights
+Require best available knowledge to be used in decision-making
+Creates prohibitions to protect endangered species and their habitat
+78. What percentage of protected lands are federal?
+7%
+10%
+9%
+8%
+6%
+79. Canada has _ protected areas?
+37
+39
+41
+40
+35
+80. Where is the least protection for protected areas, but has the greatest impact in Canada?
+Prairies
+Somewhere North
+Boreal shield
+Arctic

@@ -14,6 +14,7 @@ import cv2
 from datetime import datetime, timedelta
 from pathlib import Path
 import shutil
+import numpy as np
 import breeze_resources
 import pyperclip
 import qdarktheme # pip install pyqtdarktheme
@@ -226,7 +227,7 @@ class Window(QMainWindow):
             self.toggle_all.clicked.connect(self.toggle_all_checkboxes)
             # self.modulesList.addWidget(self.toggle_all)
             for module_index, module in enumerate(modules, start=1):
-                checkBox = QCheckBox(str(f'{module_index} - {module}'))
+                checkBox = QCheckBox(str(f'{module_index} - Module: {module}'))
                 checkBox.clicked.connect(self.refresh_topics_list)
                 self.checkBoxModules.append(checkBox)
                 # self.modulesList.addWidget(checkBox)
@@ -442,6 +443,12 @@ class Window(QMainWindow):
             endCol = int(width) # We go to the width of the document because titles could be long.
             croppedImage = img[startRow:endRow, startCol:endCol] # We crop the image accordingly to the values above.
 
+            # Convert image to dark mode
+            croppedImage = cv2.bitwise_not(croppedImage)
+            b,g,r = cv2.split(croppedImage)
+            croppedImage = cv2.merge((b,g,r))
+
+            # Convert image to be used by PyQt5
             rgbImage = cv2.cvtColor(croppedImage, cv2.COLOR_BGR2RGB)
             h, w, ch = rgbImage.shape
             bytesPerLine = ch * w
@@ -470,6 +477,7 @@ class Window(QMainWindow):
             for i, guesses in enumerate(self.slow_guesses, start=1):
                 temp_text += f'\n{i}. {guesses},'
             slow_guesses_text = f'Topics that were correct, but took longer than 30 seconds: {temp_text}\n'
+        temp_text: str = ''
         if len(self.wrong_guesses) > 0:
             for i, guesses in enumerate(self.wrong_guesses, start=1):
                 temp_text += f'\n{i}. {guesses},'
@@ -627,18 +635,21 @@ Score: {(self.correct_topics)}/{(self.completed_topics)} - {round(((self.correct
     def keyPressEvent(self, event):
         if self.stackedWidget.currentIndex() == 0: # If we have actually started studying
             if self.checkBoxMultipleChoice.isChecked():
-                if event.key() == Qt.Key_1:
-                    self.check_answer(self.answer_and_possible_answers[0])
-                elif event.key() == Qt.Key_2:
-                    self.check_answer(self.answer_and_possible_answers[1])
-                elif event.key() == Qt.Key_3:
-                    self.check_answer(self.answer_and_possible_answers[2])
-                elif event.key() == Qt.Key_4:
-                    self.check_answer(self.answer_and_possible_answers[3])
-                elif event.key() == Qt.Key_5:
-                    self.check_answer(self.answer_and_possible_answers[4])
-                elif event.key() == Qt.Key_6:
-                    self.check_answer(self.answer_and_possible_answers[5])
+                try:
+                    if event.key() == Qt.Key_1:
+                        self.check_answer(self.answer_and_possible_answers[0])
+                    elif event.key() == Qt.Key_2:
+                        self.check_answer(self.answer_and_possible_answers[1])
+                    elif event.key() == Qt.Key_3:
+                        self.check_answer(self.answer_and_possible_answers[2])
+                    elif event.key() == Qt.Key_4:
+                        self.check_answer(self.answer_and_possible_answers[3])
+                    elif event.key() == Qt.Key_5:
+                        self.check_answer(self.answer_and_possible_answers[4])
+                    elif event.key() == Qt.Key_6:
+                        self.check_answer(self.answer_and_possible_answers[5])
+                except IndexError:
+                    pass
             if event.key() == 16777220:
                 self.check_answer(self.txtInput.text())
         event.accept()

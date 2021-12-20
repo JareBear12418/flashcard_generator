@@ -118,3 +118,4 @@ flashcards/
 *.json
 .vs
 .qt_for_python
+*.yaml
